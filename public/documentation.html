@@ -15,12 +15,16 @@
                         <th>Movie Logic</th>
                         <th>URL</th>
                         <th>HTTP Method</th>
+                        <th>request</th>
+                        <th>response</th>
                         
                    </tr>
                    <tr>
                              <td>Get a list of movies</td>
                               <td>/movies</td>
                               <td>GET</td>
+                              <td>N/A</td>
+                              <td>Array of movie objects</td>
                               
                         
                    </tr>
@@ -28,51 +32,91 @@
                         <td>Get data about single movie</td>
                         <td>/movies/{movie_id}</td>
                         <td>GET</td>
+                        <td>N/A</td>
+                        <td>Movie object</td>
                         
                    </tr>
                    <tr>
                         <td>Add new movie</td>
                         <td>/movies</td>
                         <td>POST</td>
+                        <td>example:
+                              {
+                                    "title": "Movie Title",
+                                    "description": "Movie Description",
+                                    "genres": ["Genre1", "Genre2"],
+                                    "director": "Director Name"
+                                }
+                        </td>
+                        <td>newly craeted movie object</td>
                         
                    </tr>
                    <tr>
                         <td>Update deatails about a specific movie</td>
                         <td>/movies/{movie_title}</td>
                         <td>PUT</td>
+                        <td>example:{
+                              "title": "Movie Title",
+                              "description": "Movie Description",
+                              "genres": ["Genre1", "Genre2"],
+                              "director": "Director Name"
+                          }</td>
+                          <td>updated movie object</td>
                   </tr>
                    <tr>
                         <td>Delete a specific movie</td>
                         <td>/movies/{movie_id}</td>
                         <td>DELETE</td>
+                        <td>N/A</td>
+                        <td>Message confirming deletion or error message</td>
                   </tr>
                   <tr>
                         <td>List of all users</td>
                         <td>/users</td>
                         <td>GET</td>
+                        <td>N/A</td>
+                        <td>array of users objects</td>
                    </tr>
                   <tr>
                         <td>Details of a specific user</td>
                         <td>/users/{user_id}</td>
                         <td>GET</td>
+                        <td>N/A</td>
+                        <td>user object</td>
                   </tr>
                   <tr>
                         <td>Create a new user</td>
                        <td>/users</td>
                        <td>POST</td>
+                       <td>example:{
+                        "name": "User Name",
+                        "password": "Password",
+                        "email": "user@example.com"
+                    }</td>
+                    <td>newly craeted user object</td>
                  
                   </tr>
                    <tr>
                         <td>Update details of a specific user</td>
                         <td>/users/{user_id}</td>
                         <td>PUT</td>
+                        <td>example:{
+                              "Username": "Updated Username",
+                              "Password": "Updated Password",
+                              "Email": "updateduser@example.com",
+                              "Birthday": "1990-01-01"
+                          }</td>
+                          <td>updated user object</td>
                   </tr>
                   <tr>
                       <td>Delete a specific user</td>
                       <td>/users/{user_id}</td>
                       <td>DELETE</td>
+                      <td>N/A</td>
+                      <td>message confirming deletion or error message</td>
                   </tr>   
                   
             </table>
       <script>src="index.js"</script>
+      <script>src="models.js"</script>
 </body>

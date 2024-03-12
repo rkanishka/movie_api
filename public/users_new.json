@@ -1,0 +1,5 @@
+{"_id":{"$oid":"65ed8ac0e5be6ae77d724928"},"name":"doll","email":"doll@gamil.com","password":"password4","favorite_movie":[{"$oid":"65ed7cfae5be6ae77d72491c"}]}
+{"_id":{"$oid":"65ed88aae5be6ae77d724925"},"name":"annie","email":"annie@gmail.com","password":"password1","favorite_movies":[{"$oid":"65ed7dffe5be6ae77d72491d"},{"$oid":"65ed7dffe5be6ae77d72491d"},{"$oid":"65ed8076e5be6ae77d724920"}]}
+{"_id":{"$oid":"65ed899be5be6ae77d724926"},"name":"bob","email":"bob@gmail.com","password":"password2","favorite_movies":[{"$oid":"65ed7eace5be6ae77d72491e"},{"$oid":"65ed8339e5be6ae77d724923"}]}
+{"_id":{"$oid":"65ed8a42e5be6ae77d724927"},"name":"cat","email":"canni@gmail.com","password":"password3","favorite_movies":[{"$oid":"65ed812de5be6ae77d724921"}]}
+{"_id":{"$oid":"65ed8b25e5be6ae77d724929"},"name":"edie","email":"edie@gmail.com","password":"password5","favorite_movies":[{"$oid":"65ed8339e5be6ae77d724923"}],"movie":{"name":["PK"]}}
