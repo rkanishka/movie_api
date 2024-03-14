@@ -7,7 +7,7 @@ const Models = require("./models.js");
 const app = express();
 const Movies = Models.Movie;
 const Users = Models.User;
-
+const { check, validationResult } = require('express-validator');
 
 
 mongoose.connect('mongodb://localhost:27017/movieDB', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -17,11 +17,24 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+const cors = require('cors');
+app.use(cors());
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 //const authenticateJWT = require('./middleware/authenticateJWT');
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ 
+      let message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
+      return callback(new Error(message ), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 // Welcome message
 app.get('/', (req, res) => {
@@ -117,8 +130,21 @@ app.get('/users/:username',passport.authenticate('jwt', { session: false }), (re
 });
 
 // Add a new user
-app.post('/users',passport.authenticate('jwt', { session: false }), (req, res) => {
+app.post('/users',[
+ check('name',"Name is required of atleast 5 characters").isLength({min: 5}),
+ check('name',"Name contains non- alphanumeric characters - not allowed").isAlphanumeric(),
+ check('password','Password is required').not().isEmpty(),
+ check('email','Email is not valid').isEmail()
+],
+ (req, res) => {
+  let errors= validationResult(req);
+
+  if(!errors.isEmpty()){
+    return res.status(422).json({errors: errors.array()});
+  }
+  let hashedPassword = Users.hashPassword(req.body.password);
   let newUser = req.body;
+  newUser.password = hashedPassword ;
 
   if (!newUser.name) {
     const message = 'Missing name in request body';
