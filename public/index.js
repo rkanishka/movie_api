@@ -11,8 +11,8 @@ const { check, validationResult } = require('express-validator');
 
 
 //mongoose.connect('mongodb://localhost:27017/movieDB', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect('process.env.CONNECTION_URI', { useNewUrlParser: true, useUnifiedTopology: true });
-
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb+srv://kanishkaraghuvanshi97:Krisha%4019@cluster0.clb9d16.mongodb.net/movieDB?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true });
 // Middleware
 app.use(morgan('common'));
 app.use(express.static('public'));
@@ -24,7 +24,7 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 //const authenticateJWT = require('./middleware/authenticateJWT');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com','*'];
 
 app.use(cors({
   origin: (origin, callback) => {
